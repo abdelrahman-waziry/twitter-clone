@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Auth::routes();
+
+/**
+ * Socialite Auth Routes
+ */
+
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
+Route::group(['middleware'=>'auth'], function(){
+	Route::get('/', 'TweetsController@index');
 });
