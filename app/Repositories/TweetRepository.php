@@ -3,15 +3,29 @@
 namespace App\Repositories;
 
 use App\Tweet;
+use Illuminate\Support\Facades\Auth;
 
 class TweetRepository
 {
 
-    private $payload = ['id', 'body', 'author'];
+    protected $model;
 
-    public function __consturct()
+    /**
+     * Sets Repository model to App\User
+     * @return void
+     */
+    public function __construct()
     {
-        $this->model = new Tweet;
+        $this->model = new Tweet();
+    }
+
+    /**
+     * Returns all tweets ordered descendingly by created_at
+     * @return \Illuminate\Http\Response
+     */
+    public function all()
+    {
+        return $this->model->orderBy('created_at', 'DESC')->get();
     }
 
     public function paginate(int $count = 15)
@@ -21,6 +35,20 @@ class TweetRepository
 
     public function findTweet(int $id)
     {
-        $tweet = $this->model->$select($payload)->findOrFail($id);
+        return $this->model->$select($payload)->findOrFail($id);
     }
+
+    /**
+     *
+     */
+    public function storeTweet($request)
+    {
+        $tweet = $this->model->create([
+            'body' => $request->input('body'),
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return $tweet;
+    }
+
 }
