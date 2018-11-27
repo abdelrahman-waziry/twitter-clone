@@ -58,15 +58,23 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
         $auth_user = Socialite::driver($provider)->user();
-    
+        
         $user = User::updateOrCreate(
-            ['email' => $auth_user->email],
+            [
+                'email' => $auth_user->email
+            ],
             [
                 'token' => bcrypt($auth_user->token),
-                'name'  =>  $auth_user->name,
-                'username' => $auth_user->nickname ?: explode(" ", $auth_user->name)[0] . str_random(5)  
+                'name'  =>  $auth_user->name, 
+                'username' => $auth_user->nickname ?: explode(" ", $auth_user->name)[0] . str_random(5),
+                'avatar' => $auth_user->avatar_original
             ]
         );
+
+        // if(!$user->username){
+
+        //     $user->save();  
+        // }
         
         Auth::login($user, true);
         return redirect()->to('/');
