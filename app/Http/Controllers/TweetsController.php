@@ -20,7 +20,7 @@ class TweetsController extends Controller
      */
     public function index()
     {
-        return view('welcome', $this->tweets->paginate(10));
+        return view('home', ['tweets' => $this->tweets->all()]);
     }
 
     /**
@@ -41,7 +41,7 @@ class TweetsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json($this->tweets->storeTweet($request), 201);
     }
 
     /**
