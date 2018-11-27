@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -15,8 +16,26 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'token', 'username'
+        'name', 'email', 'password', 'token', 'username', 'avatar'
     ];
+
+    protected $appends = ['followed'];
+
+    public function followed()
+    {
+        return $this->hasMany('App\FollowUser', 'following', 'id');
+    }
+
+    public function getFollowedAttribute()
+    {
+        $payload = [
+            'follower' => Auth::user()->id,
+            'following' => $this->id,
+        ];
+
+        $isFollowed = $this->followed()->where($payload)->first();
+        return $isFollowed ? true : false;
+    }
 
     /**
      * The attributes that should be hidden for arrays.
