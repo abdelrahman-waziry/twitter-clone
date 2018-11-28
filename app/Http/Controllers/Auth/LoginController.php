@@ -70,11 +70,6 @@ class LoginController extends Controller
                 'avatar' => $auth_user->avatar_original
             ]
         );
-
-        // if(!$user->username){
-
-        //     $user->save();  
-        // }
         
         Auth::login($user, true);
         return redirect()->to('/');
