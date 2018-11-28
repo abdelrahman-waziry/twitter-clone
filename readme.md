@@ -74,3 +74,5 @@ GOOGLE_KEY=YOUR_GOOGLE_KEY
 GOOGLE_SECRET=GOOGLE_SECRET 
 GOOGLE_REDIRECT_URI=http://localhost:8000/auth/google/callback
 ```
+
+**Note: Applications Oauth credentials can be found in creds.txt file at project root*
