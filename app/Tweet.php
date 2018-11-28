@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Tweet extends Model
 {
@@ -15,11 +16,11 @@ class Tweet extends Model
         'body', 'user_id',
     ];
 
-    protected $appends = ['likes', 'subject'];
+    protected $appends = ['likes', 'subject', 'liked'];
 
-    public function reaction()
+    public function reactions()
     {
-        return $this->belongsTo('App\Reaction', 'id');
+        return $this->hasMany('App\Reaction', 'tweet_id' ,'id');
     }
 
     public function subject()
@@ -29,7 +30,7 @@ class Tweet extends Model
 
     public function getLikesAttribute()
     {
-        $likes = $this->reaction()->count();
+        $likes = $this->reactions()->whereNull('deleted_at')->count();
         return $likes;
     }
 
@@ -37,5 +38,15 @@ class Tweet extends Model
     {
         $subject = $this->subject()->first();
         return $subject;
+    }
+
+    public function getLikedAttribute(){
+        $payload = [
+            'user_id' => Auth::user()->id,
+            'tweet_id' => $this->id,
+        ];
+
+        $liked = $this->reactions()->whereNull('deleted_at')->where($payload)->first();
+        return $liked ? true : false;
     }
 }
