@@ -33,7 +33,7 @@ class User extends Authenticatable
             'following' => $this->id,
         ];
 
-        $isFollowed = $this->followed()->where($payload)->first();
+        $isFollowed = $this->followed()->whereNull('deleted_at')->where($payload)->first();
         return $isFollowed ? true : false;
     }
 

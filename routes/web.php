@@ -28,11 +28,13 @@ Route::group(['middleware' => 'auth'], function () {
      */
 
     Route::post('tweet/create', 'TweetsController@store');
+    Route::post('/tweet/like', 'TweetsController@like');
 
     /**
      * User related routes
      */
 
     Route::get('user/{name}', 'UsersController@show');
+    Route::post('follow', 'UsersController@follow');
 
 });

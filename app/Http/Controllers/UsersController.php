@@ -22,7 +22,7 @@ class UsersController extends Controller
     public function show(string $username)
     {
         $user = $this->users->userByName($username);
-        $tweets = $this->users->tweetsByUser($user->id);
+        $tweets = $this->users->tweetsByUser($user->id);   
         
         $data = [
             'user' => $user,
@@ -31,5 +31,16 @@ class UsersController extends Controller
         
 
         return view('profile', $data);
+    }
+
+    /**
+     * Follow a user
+     *
+     * @param  Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function follow(Request $request)
+    {   
+        return response()->json($this->users->followUser($request), 201);
     }
 }
