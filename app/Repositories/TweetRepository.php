@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Tweet;
 use Illuminate\Support\Facades\Auth;
+use App\Reaction;
+use Carbon\Carbon;
 
 class TweetRepository
 {
@@ -39,7 +41,9 @@ class TweetRepository
     }
 
     /**
-     *
+     * Stores a new tweet
+     * @param $request \Illuminate\Http\Request
+     * @return $tweet \Illuminate\Http\Response 
      */
     public function storeTweet($request)
     {
@@ -49,6 +53,31 @@ class TweetRepository
         ]);
 
         return $tweet;
+    }
+
+    /**
+     * Likes a tweet
+     * @param $request \Illuminate\Http\Request
+     * @return $reaction \Illuminate\Http\Response 
+     */
+    public function likeTweet($request)
+    {
+
+        $payload = [
+            'tweet_id' => $request->input('id'),
+            'user_id' => Auth::user()->id,
+        ];
+
+        if($request->input('liked')){
+            $reaction = Reaction::where($payload)->update(['deleted_at' => Carbon::now()]);
+        }
+        else {
+            $reaction = Reaction::firstOrCreate($payload);
+            $reaction->deleted_at = null;
+            $reaction->save();
+        }
+        
+        return $reaction;
     }
 
 }

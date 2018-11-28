@@ -44,6 +44,18 @@ class TweetsController extends Controller
         return response()->json($this->tweets->storeTweet($request), 201);
     }
 
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function like(Request $request)
+    {
+        return response()->json($this->tweets->likeTweet($request), 201);
+    }
+
     /**
      * Display the specified resource.
      *
