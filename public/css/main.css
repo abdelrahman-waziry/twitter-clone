@@ -74,6 +74,8 @@ Auth Styling
 
 .tweets .panel {
   padding: 0;
+  margin-bottom: 0;
+  border: none;
 }
 
 .tweets .tweet h6 {
@@ -83,6 +85,7 @@ Auth Styling
 .tweets .panel-heading {
   background: #fcfcfc;
   border-radius: 0;
+  border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
   padding: 5px 7.5px;
 }
@@ -106,6 +109,11 @@ Auth Styling
   margin-top: 0;
 }
 
+.like-btn.liked {
+  background: #dd4b39;
+  color: #fff;
+}
+
 
 /*
   Profile styling
@@ -115,4 +123,8 @@ Auth Styling
   border-radius: 100%;
   width: 80px;
   height: 80px;
+}
+
+.follow-btn {
+  margin-bottom: 1em;
 }

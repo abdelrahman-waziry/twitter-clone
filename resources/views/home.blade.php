@@ -30,7 +30,7 @@
                                 <div class="panel-footer">
                                     <button class="btn">
                                         <i class="fas fa-heart"></i>
-                                        
+                                        <p></p>
                                     </button>
                                 </div>
                             </div>
@@ -39,8 +39,8 @@
                             <div class="row tweet">
                                 <div class="col-md-12 panel">
                                     <div class="panel-heading">
-                                        <a href={{'user/' . $tweet->subject->username}}>
-                                            <img src={{$tweet->subject->avatar}} alt="avatar">
+                                        <a href={{'/user/' . $tweet->subject->username}}>
+                                            <img src={{$tweet->subject->avatar ?: 'https://via.placeholder.com/150'}} alt="avatar">
                                             <div class="user-info">
                                                 <h5>{{$tweet->subject->name}}</h5>
                                                 <h6>@ {{$tweet->subject->username}}</h6>
@@ -51,9 +51,9 @@
                                         <p>{{$tweet->body}}</p>
                                     </div>
                                     <div class="panel-footer">
-                                        <button class="btn">
+                                        <button liked="{{$tweet->liked}}" tweet-id="{{$tweet->id}}" class="{{$tweet->liked ? 'btn like-btn liked' : 'btn like-btn'}}">
                                             <i class="fas fa-heart"></i>
-                                            {{$tweet->likes}}
+                                            <p>{{$tweet->likes}}</p>
                                         </button>
                                     </div>
                                 </div>
