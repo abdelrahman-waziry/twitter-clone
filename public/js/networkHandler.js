@@ -68,7 +68,7 @@ function appendTweetToFeed(data) {
     var clonedTweetName = tweets.firstChild.querySelector('.user-info h5');
     var clonedTweetUserName = tweets.firstChild.querySelector('.user-info h6');
     var clonedTweetAnchor = tweets.firstChild.querySelector('.panel .panel-heading a ');
-
+    
     clonedTweetBody.innerText = data.body
     clonedTweetLikes.innerText = data.likes
     clonedTweetAvatar.src = data.subject.avatar ? data.subject.avatar : 'https://via.placeholder.com/150' 

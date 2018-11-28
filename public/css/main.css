@@ -17,6 +17,11 @@ button p {
   display: none;
 }
 
+textarea {
+  resize: vertical;
+}
+
+
 /*
 Auth Styling
 */

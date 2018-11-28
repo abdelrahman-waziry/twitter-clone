@@ -28,7 +28,7 @@
                                     <p></p>
                                 </div>
                                 <div class="panel-footer">
-                                    <button class="btn">
+                                    <button class="btn like-btn">
                                         <i class="fas fa-heart"></i>
                                         <p></p>
                                     </button>
