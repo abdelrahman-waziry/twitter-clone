@@ -1,0 +1,11 @@
+TWITTER_KEY=qawRyGH2U4hOhhjoMILDRzlwp 
+TWITTER_SECRET=rH6NEca4mT6iExE5cPj8Dch9a0mjNjMAdk0OjzepjQpjCaQU48 
+TWITTER_REDIRECT_URI=http://localhost:8000/auth/twitter/callback
+
+FACEBOOK_KEY=288763505314711 
+FACEBOOK_SECRET=e8b18c4d6982c65d325dfdc2f3d1aa5c 
+FACEBOOK_REDIRECT_URI=http://localhost:8000/auth/facebook/callback
+
+GOOGLE_KEY=607070778666-nc89cjcr0afjg3aaded791k4q7h1bi74.apps.googleusercontent.com 
+GOOGLE_SECRET=2rSJLE1j7qYCU08XRmdPAV8I 
+GOOGLE_REDIRECT_URI=http://localhost:8000/auth/google/callback
