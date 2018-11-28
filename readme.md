@@ -59,7 +59,7 @@ Reference Oauth credentials to `config/services.php`
 ],
 ```
 
-Add Applications Oauth credentials to `config/services.php`
+Add Applications Oauth credentials to `.env`
 
 ```
 TWITTER_KEY=YOUR_TWITTER_KEY 
